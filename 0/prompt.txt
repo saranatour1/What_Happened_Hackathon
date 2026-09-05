@@ -1,0 +1,72 @@
+let's go to the schema.ts file, and retrace the steps of the orchestraded tables, what I want is: 
+A list of events, events has many users assosciated users, many moments, and can have a start and end date, and can even be happening in the present, or ongoing now, 
+
+What we need is a simple logic that can trace that to the user, and the user table is associated with the user table on the auth component, so we need the logic to have that in mind, also we need to know if we can add more items to the users table, like name and image etc. 
+
+a moment doesn't have to be associated with an event, but it has to have a user involved. 
+
+Look through the convex helpers package, and use zod to trace and make the schema itself validatable.
+
+---
+
+Execute the selected diff-tab commit-and-push action.
+
+---
+
+run the project. locatlly
+
+---
+
+Execute the selected diff-tab commit-and-push action.
+
+---
+
+there's no PR?
+
+---
+
+make a PR please
+
+---
+
+Make a staging enviroment, using convex, and create a branch called staging
+
+---
+
+I just deployed the worker to cloudflare
+
+---
+
+I added that to cloudlfare, do I need to add it locally too?
+
+---
+
+added
+
+---
+
+what's the build command?
+
+---
+
+on cloudflare
+
+---
+
+but it needs to deploy to convex too, there's a build command for it
+
+---
+
+Commit to the branch, and then create a PR to staging
+
+---
+
+/review
+
+---
+
+fix
+
+---
+
+fix - no users in the schema yet
