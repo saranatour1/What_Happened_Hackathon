@@ -6,3 +6,7 @@ What we need is a simple logic that can trace that to the user, and the user tab
 a moment doesn't have to be associated with an event, but it has to have a user involved. 
 
 Look through the convex helpers package, and use zod to trace and make the schema itself validatable.
+
+---
+
+Execute the selected diff-tab commit-and-push action.
