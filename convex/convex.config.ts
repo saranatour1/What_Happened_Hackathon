@@ -18,7 +18,7 @@ app.use(auth, {
     AUTH_JWKS: app.env.AUTH_JWKS,
   },
 });
-app.use(passwordProvider);
-app.use(username);
+app.use(passwordProvider); // Why are these components now?
+app.use(username); // Can I add more data to it?
 
 export default app;

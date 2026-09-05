@@ -14,6 +14,8 @@ import {
   userSummary,
 } from "./lib/validators";
 
+const normalizeEventType = (type: string) => type.toLowerCase();
+
 export const list = authenticatedQuery({
   args: listEventsArgs,
   returns: z.array(eventDocument),
@@ -30,7 +32,9 @@ export const list = authenticatedQuery({
         : await ctx.db
             .query("eventMembers")
             .withIndex("by_userId_and_eventType_and_eventStartsAt", (q) =>
-              q.eq("userId", ctx.userId).eq("eventType", type),
+              q
+                .eq("userId", ctx.userId)
+                .eq("eventType", normalizeEventType(type)),
             )
             .order("desc")
             .take(limit);
@@ -71,7 +75,7 @@ export const create = authenticatedMutation({
   handler: async (ctx, args) => {
     const canonicalType = ctx.user.customEventTypes.find(
       (eventType: string) =>
-        eventType.toLocaleLowerCase() === args.type.toLocaleLowerCase(),
+        normalizeEventType(eventType) === normalizeEventType(args.type),
     );
     if (canonicalType === undefined) {
       throw new ConvexError({
@@ -123,7 +127,7 @@ export const create = authenticatedMutation({
       addedByUserId: ctx.userId,
       role: "owner",
       eventStartsAt: args.startsAt,
-      eventType: canonicalType,
+      eventType: normalizeEventType(canonicalType),
     });
     for (const userId of memberUserIds) {
       await ctx.db.insert("eventMembers", {
@@ -132,7 +136,7 @@ export const create = authenticatedMutation({
         addedByUserId: ctx.userId,
         role: "member",
         eventStartsAt: args.startsAt,
-        eventType: canonicalType,
+        eventType: normalizeEventType(canonicalType),
       });
     }
     return eventId;
@@ -186,7 +190,7 @@ export const addMember = authenticatedMutation({
       addedByUserId: ctx.userId,
       role: "member",
       eventStartsAt: event.startsAt,
-      eventType: event.type,
+      eventType: normalizeEventType(event.type),
     });
   },
 });
