@@ -1,0 +1,133 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "01M1S4CS54A17DBZKTPRM1NQAK",
+  "session_id": "0bd32821-04a6-4fa0-be86-efd47fc36a8c",
+  "strategy": "manual-commit",
+  "created_at": "2026-09-05T15:53:32.136582Z",
+  "branch": "cursor/add-product-plan",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [
+    "convex/_generated/api.d.ts",
+    "convex/lib/authorization.ts",
+    "convex/myFunctions.ts",
+    "convex/schema.ts",
+    "convex/users.ts",
+    "package-lock.json",
+    "package.json",
+    "setup.mjs",
+    "src/App.tsx"
+  ],
+  "agent": "Cursor",
+  "model": "gpt-5.6-sol-xhigh",
+  "turn_id": "e2713bd7f302",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 117,
+    "cache_creation_tokens": 118189,
+    "cache_read_tokens": 4371294,
+    "output_tokens": 24029,
+    "api_call_count": 1
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-09-05T15:53:32.051831Z",
+    "agent_lines": 0,
+    "agent_removed": 6,
+    "human_added": 0,
+    "human_modified": 181,
+    "human_removed": 5545,
+    "total_committed": 45,
+    "total_lines_changed": 5732,
+    "agent_percentage": 0.10467550593161201,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 3618,
+      "user_lines_removed": 6322,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".agents/skills/convex-authz/SKILL.md": 1,
+        ".agents/skills/convex-design/SKILL.md": 1,
+        ".agents/skills/convex-expert/SKILL.md": 1,
+        ".agents/skills/convex-quickstart/SKILL.md": 1,
+        ".claude/settings.json": 90,
+        ".claude/skills/convex-authz/SKILL.md": 1,
+        ".claude/skills/convex-design/SKILL.md": 1,
+        ".claude/skills/convex-expert/SKILL.md": 1,
+        ".claude/skills/convex-quickstart/SKILL.md": 1,
+        ".cursor/hooks.json": 40,
+        "convex/_generated/ai/ai-files.state.json": 1,
+        "convex/_generated/api.d.ts": 8,
+        "convex/convex.config.ts": 2,
+        "convex/events.ts": 107,
+        "convex/lib/functions.ts": 24,
+        "convex/lib/validators.ts": 70,
+        "convex/moments.ts": 61,
+        "convex/schema.ts": 25,
+        "convex/users.ts": 56,
+        "hackathon.md": 5,
+        "package.json": 6,
+        "plan/plan.md": 36,
+        "pnpm-lock.yaml": 3055,
+        "pnpm-workspace.yaml": 6,
+        "setup.mjs": 9,
+        "skills-lock.json": 4,
+        "src/App.tsx": 5
+      },
+      "user_removed_per_file": {
+        ".agents/skills/convex-authz/SKILL.md": 1,
+        ".agents/skills/convex-design/SKILL.md": 1,
+        ".agents/skills/convex-expert/SKILL.md": 1,
+        ".agents/skills/convex-quickstart/SKILL.md": 1,
+        ".claude/skills/convex-authz/SKILL.md": 1,
+        ".claude/skills/convex-design/SKILL.md": 1,
+        ".claude/skills/convex-expert/SKILL.md": 1,
+        ".claude/skills/convex-quickstart/SKILL.md": 1,
+        ".cursor/rules/convex_rules.mdc": 464,
+        "convex/_generated/ai/ai-files.state.json": 1,
+        "convex/_generated/api.d.ts": 2,
+        "convex/convex.config.ts": 2,
+        "convex/myFunctions.ts": 81,
+        "convex/schema.ts": 5,
+        "hackathon.md": 2,
+        "package-lock.json": 5566,
+        "package.json": 9,
+        "plan/plan.md": 118,
+        "setup.mjs": 5,
+        "skills-lock.json": 4,
+        "src/App.tsx": 55
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 155,
+      "user_lines_removed": 469,
+      "agent_lines_added": 3688,
+      "agent_lines_removed": 5860,
+      "user_added_per_file": {
+        ".claude/settings.json": 90,
+        ".claude/skills/convex-authz/SKILL.md": 1,
+        ".claude/skills/convex-design/SKILL.md": 1,
+        ".claude/skills/convex-expert/SKILL.md": 1,
+        ".claude/skills/convex-quickstart/SKILL.md": 1,
+        ".cursor/hooks.json": 40,
+        "convex/events.ts": 15,
+        "convex/lib/validators.ts": 6
+      },
+      "user_removed_per_file": {
+        ".claude/skills/convex-authz/SKILL.md": 1,
+        ".claude/skills/convex-design/SKILL.md": 1,
+        ".claude/skills/convex-expert/SKILL.md": 1,
+        ".claude/skills/convex-quickstart/SKILL.md": 1,
+        ".cursor/rules/convex_rules.mdc": 464,
+        "convex/lib/validators.ts": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+let's go to the schema.ts file, and retrace the steps of the orchestraded tables, what I want is: 
+A list of events, events has many users assosciated users, many moments, and can have a start and end date, and can even be happening in the present, or ongoing now, 
+
+What we need is a simple logic that can trace that to the user, and the user table is associated with the user table on the auth component, so we need the logic to have that in mind, also we need to know if we can add more items to the users table, like name and image etc. 
+
+a moment doesn't have to be associated with an event, but it has to have a user involved. 
+
+Look through the convex helpers package, and use zod to trace and make the schema itself validatable.
