@@ -9,8 +9,12 @@
  */
 
 import type * as auth from "../auth.js";
+import type * as events from "../events.js";
 import type * as http from "../http.js";
-import type * as myFunctions from "../myFunctions.js";
+import type * as lib_authorization from "../lib/authorization.js";
+import type * as lib_functions from "../lib/functions.js";
+import type * as lib_validators from "../lib/validators.js";
+import type * as moments from "../moments.js";
 import type * as users from "../users.js";
 
 import type {
@@ -21,8 +25,12 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
+  events: typeof events;
   http: typeof http;
-  myFunctions: typeof myFunctions;
+  "lib/authorization": typeof lib_authorization;
+  "lib/functions": typeof lib_functions;
+  "lib/validators": typeof lib_validators;
+  moments: typeof moments;
   users: typeof users;
 }>;
 
