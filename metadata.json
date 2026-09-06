@@ -2,7 +2,7 @@
   "cli_version": "0.10.5",
   "checkpoint_id": "01M1VSRKDXNMGMAGHD0DT1XMJT",
   "strategy": "manual-commit",
-  "branch": "cursor/add-product-plan",
+  "branch": "cursor/bump-convex-1-45",
   "checkpoints_count": 1,
   "files_touched": [
     "package.json",
@@ -16,12 +16,5 @@
       "content_hash": "/0/content_hash.txt",
       "prompt": "/0/prompt.txt"
     }
-  ],
-  "token_usage": {
-    "input_tokens": 8,
-    "cache_creation_tokens": 307238,
-    "cache_read_tokens": 610146,
-    "output_tokens": 2433,
-    "api_call_count": 1
-  }
+  ]
 }
