@@ -1,5 +1,5 @@
 /**
- * This script runs `npx @convex-dev/auth` to help with setting up
+ * This script runs `pnpm dlx @convex-dev/auth` to help with setting up
  * environment variables for Convex Auth.
  *
  * You can safely delete it and remove it from package.json scripts.
@@ -24,11 +24,15 @@ if (runOnceWorkflow && config.SETUP_SCRIPT_RAN !== undefined) {
   process.exit(0);
 }
 
-const result = spawnSync("npx", ["@convex-dev/auth", "--skip-git-check"], {
-  stdio: "inherit",
-});
+const result = spawnSync(
+  "pnpm",
+  ["dlx", "@convex-dev/auth", "--skip-git-check"],
+  {
+    stdio: "inherit",
+  },
+);
 
-if (runOnceWorkflow) {
+if (runOnceWorkflow && result.status === 0) {
   fs.writeFileSync(".env.local", `\nSETUP_SCRIPT_RAN=1\n`, { flag: "a" });
 }
 
