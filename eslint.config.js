@@ -77,4 +77,9 @@ export default defineConfig([
     },
   },
   ...convexPlugin.configs.recommended,
+  {
+    // shadcn-generated files export variants alongside components
+    files: ["src/components/ui/**"],
+    rules: { "react-refresh/only-export-components": "off" },
+  },
 ]);
