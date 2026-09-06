@@ -1,0 +1,9 @@
+create a new branch from staging and run tests on it using vitest
+
+---
+
+Start multitasking
+
+---
+
+run the dev server
