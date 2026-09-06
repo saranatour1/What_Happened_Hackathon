@@ -1,17 +1,1 @@
-create a new branch from staging and run tests on it using vitest
-
----
-
-Start multitasking
-
----
-
-run the dev server
-
----
-
-commit changes, and make a PR to staging
-
----
-
-commit changes, and make a PR to staging
+commit
