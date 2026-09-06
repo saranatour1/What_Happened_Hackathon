@@ -38,6 +38,13 @@ export const updateProfile = authenticatedMutation({
   args: updateProfileArgs,
   returns: userDocument,
   handler: async (ctx, updates) => {
+    if (updates.name === undefined && updates.image === undefined) {
+      throw new ConvexError({
+        code: "EMPTY_PROFILE_UPDATE",
+        message: "Provide a name or image to update",
+      });
+    }
+
     await ctx.db.patch("users", ctx.userId, updates);
     return { ...ctx.user, ...updates };
   },

@@ -73,6 +73,13 @@ export const create = authenticatedMutation({
   args: createEventArgs,
   returns: zid("events"),
   handler: async (ctx, args) => {
+    if (args.endsAt !== undefined && args.endsAt < args.startsAt) {
+      throw new ConvexError({
+        code: "INVALID_EVENT_TIME_RANGE",
+        message: "End time must be at or after the start time",
+      });
+    }
+
     const canonicalType = ctx.user.customEventTypes.find(
       (eventType: string) =>
         normalizeEventType(eventType) === normalizeEventType(args.type),
