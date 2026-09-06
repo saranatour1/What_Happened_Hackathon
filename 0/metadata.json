@@ -1,0 +1,54 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "01M1VVR6STFHAJ35ZWA458SYH0",
+  "session_id": "d259624e-d85c-43a8-bfe2-248fb1521722",
+  "strategy": "manual-commit",
+  "created_at": "2026-09-06T17:20:13.579308Z",
+  "branch": "fix-pr16-review",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".claude/launch.json",
+    ".entire/settings.json",
+    "plan/plan.md",
+    "setup.mjs",
+    "src/App.tsx",
+    "src/components/ui/tabs.tsx",
+    "src/pages/NewEvent.tsx",
+    "src/pages/Settings.tsx"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-5",
+  "turn_id": "4986ca8e0975",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 118,
+    "cache_creation_tokens": 97346,
+    "cache_read_tokens": 6954701,
+    "output_tokens": 24492,
+    "api_call_count": 59
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-09-06T17:20:13.536346Z",
+    "agent_lines": 68,
+    "agent_removed": 24,
+    "human_added": 6,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 74,
+    "total_lines_changed": 104,
+    "agent_percentage": 88.46153846153845,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    }
+  ]
+}
