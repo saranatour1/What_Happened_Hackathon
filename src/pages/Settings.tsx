@@ -8,14 +8,31 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { eventTypes, user } from "@/data";
 
+function formatJoined(dateOnly: string) {
+  const [y, m, d] = dateOnly.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString(undefined, { dateStyle: "medium" });
+}
+
 export default function Settings() {
   const [custom, setCustom] = useState(user.customTypes);
   const [draft, setDraft] = useState("");
+  const [username, setUsername] = useState(user.username);
+  const [saved, setSaved] = useState(false);
 
+  // ponytail: mutate the shared mock `user` object so NewEvent (which reads it fresh on mount) sees the change; upgrade to Convex storage when the backend lands
   const add = () => {
     const t = draft.trim();
-    if (t && ![...eventTypes, ...custom].some((x) => x.toLowerCase() === t.toLowerCase())) setCustom([...custom, t]);
+    if (t && ![...eventTypes, ...custom].some((x) => x.toLowerCase() === t.toLowerCase())) {
+      const next = [...custom, t];
+      user.customTypes = next;
+      setCustom(next);
+    }
     setDraft("");
+  };
+
+  const save = () => {
+    user.username = username;
+    setSaved(true);
   };
 
   return (
@@ -25,19 +42,20 @@ export default function Settings() {
       <Card>
         <CardHeader>
           <CardTitle>Profile</CardTitle>
-          <CardDescription>Member since {new Date(user.joined).toLocaleDateString(undefined, { dateStyle: "medium" })}.</CardDescription>
+          <CardDescription>Member since {formatJoined(user.joined)}.</CardDescription>
         </CardHeader>
         <CardContent className="flex items-center gap-4">
           <Avatar className="size-14">
-            <AvatarFallback className="text-lg">{user.username[0].toUpperCase()}</AvatarFallback>
+            <AvatarFallback className="text-lg">{username[0]?.toUpperCase()}</AvatarFallback>
           </Avatar>
           <div className="grid flex-1 gap-2">
             <Label htmlFor="username">Username</Label>
-            <Input id="username" defaultValue={user.username} />
+            <Input id="username" value={username} onChange={(e) => { setUsername(e.target.value); setSaved(false); }} />
           </div>
         </CardContent>
-        <CardFooter className="justify-end">
-          <Button>Save</Button>
+        <CardFooter className="justify-end gap-2">
+          {saved && <span className="text-sm text-muted-foreground">Saved</span>}
+          <Button onClick={save}>Save</Button>
         </CardFooter>
       </Card>
 
@@ -52,7 +70,11 @@ export default function Settings() {
             {custom.map((t) => (
               <Badge key={t} variant="outline" className="gap-1 pr-1">
                 {t}
-                <button type="button" aria-label={`Remove ${t}`} onClick={() => setCustom(custom.filter((x) => x !== t))}
+                <button type="button" aria-label={`Remove ${t}`} onClick={() => {
+                  const next = custom.filter((x) => x !== t);
+                  user.customTypes = next;
+                  setCustom(next);
+                }}
                   className="rounded-full p-0.5 hover:bg-muted"><X className="size-3" /></button>
               </Badge>
             ))}

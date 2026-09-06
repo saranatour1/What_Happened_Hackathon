@@ -29,11 +29,17 @@ const result = spawnSync(
   ["dlx", "@convex-dev/auth", "--skip-git-check"],
   {
     stdio: "inherit",
+    shell: process.platform === "win32",
   },
 );
+
+if (result.error) {
+  console.error(result.error);
+  process.exit(1);
+}
 
 if (runOnceWorkflow && result.status === 0) {
   fs.writeFileSync(".env.local", `\nSETUP_SCRIPT_RAN=1\n`, { flag: "a" });
 }
 
-process.exit(result.status);
+process.exit(result.status ?? 1);

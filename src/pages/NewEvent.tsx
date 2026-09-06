@@ -26,9 +26,9 @@ export default function NewEvent() {
               <Input id="date" type="date" required />
             </div>
             <div className="grid gap-2">
-              <Label>Type</Label>
+              <Label htmlFor="event-type">Type</Label>
               <Select defaultValue="Everyday">
-                <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
+                <SelectTrigger id="event-type" className="w-full"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {[...eventTypes, ...user.customTypes].map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
                 </SelectContent>

@@ -32,6 +32,7 @@ export default function App() {
       {path === "event" && <EventPage id={param} />}
       {path === "new" && <NewEvent />}
       {path === "settings" && <Settings />}
+      {path !== "timeline" && path !== "event" && path !== "new" && path !== "settings" && <Timeline />}
     </Shell>
   );
 }

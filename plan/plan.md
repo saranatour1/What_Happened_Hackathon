@@ -71,46 +71,60 @@ flowchart TB
 
 ## Addable event types
 
-Event types remain addable without introducing a fourth table.
-
 - Seed `users.customEventTypes` with Trip, Milestone, Everyday, Other.
 - User can append a normalized, unique type string.
-- `events.type` must match one of the authenticated user's type strings.
-- Timelines filter on the `by_userId_and_type` index.
+- `events.type` must match one of the owner's type strings.
+- Timelines filter on the `eventMembers.by_userId_and_eventType_and_eventStartsAt` index.
 
 ## Data model
 
-### Schema (v1 — three tables)
+### Schema (v2 — four tables, as implemented in `convex/schema.ts`)
 
 ```ts
 users: defineTable({
   username: v.string(),
+  name: v.optional(v.string()),
+  image: v.optional(v.string()),
   customEventTypes: v.array(v.string()), // seeded + user-added
-}),
+}).index("by_username", ["username"]),
 
 events: defineTable({
-  userId: v.id("users"),
+  ownerUserId: v.id("users"),
   title: v.string(),
-  type: v.string(), // must be in user's customEventTypes (enforced in mutation)
+  type: v.string(), // must be one of the owner's customEventTypes (enforced in mutation)
   parentEventId: v.optional(v.id("events")),
   startsAt: v.number(),
   endsAt: v.optional(v.number()),
   timezone: v.optional(v.string()),
   notes: v.optional(v.string()),
-}).index("by_userId_and_startsAt", ["userId", "startsAt"])
-  .index("by_userId_and_type", ["userId", "type"])
+}).index("by_ownerUserId_and_startsAt", ["ownerUserId", "startsAt"])
+  .index("by_ownerUserId_and_type_and_startsAt", ["ownerUserId", "type", "startsAt"])
   .index("by_parentEventId_and_startsAt", ["parentEventId", "startsAt"]),
+
+// Membership + a denormalized copy of the event's type/startsAt, so a
+// member's timeline can be queried without joining back to `events`.
+eventMembers: defineTable({
+  eventId: v.id("events"),
+  userId: v.id("users"),
+  addedByUserId: v.id("users"),
+  role: v.union(v.literal("owner"), v.literal("member")),
+  eventStartsAt: v.number(),
+  eventType: v.string(),
+}).index("by_eventId_and_userId", ["eventId", "userId"])
+  .index("by_userId_and_eventStartsAt", ["userId", "eventStartsAt"])
+  .index("by_userId_and_eventType_and_eventStartsAt", ["userId", "eventType", "eventStartsAt"]),
 
 moments: defineTable({
   userId: v.id("users"),
-  eventId: v.id("events"),
+  eventId: v.optional(v.id("events")),
   r2Key: v.string(),
   contentType: v.string(),
   byteSize: v.optional(v.number()),
   takenAt: v.number(),
   message: v.optional(v.string()),
 }).index("by_eventId_and_takenAt", ["eventId", "takenAt"])
-  .index("by_userId_and_takenAt", ["userId", "takenAt"]),
+  .index("by_userId_and_takenAt", ["userId", "takenAt"])
+  .index("by_userId_and_eventId_and_takenAt", ["userId", "eventId", "takenAt"]),
 ```
 
 Use `convex-helpers/server/zod` and `zod` for shared function argument schemas. Zod validates string length, trimming, finite timestamps, positive byte size, allowed MIME types, and date ordering before database writes. Convex schema validators remain the storage boundary.
