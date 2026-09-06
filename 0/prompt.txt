@@ -7,3 +7,11 @@ Start multitasking
 ---
 
 run the dev server
+
+---
+
+commit changes, and make a PR to staging
+
+---
+
+commit changes, and make a PR to staging
